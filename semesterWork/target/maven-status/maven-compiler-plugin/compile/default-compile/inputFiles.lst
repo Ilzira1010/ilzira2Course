@@ -1,0 +1,16 @@
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\services\signUp\SignUpServiceImpl.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\filters\AuthenticationFilter.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\servlets\SignInServlet.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\services\UsersService.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\repositories\UsersRepositoryImpl.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\dto\UserDto.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\dto\SignUpForm.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\dto\SignInForm.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\services\signIn\SignInServiceImpl.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\repositories\UsersRepository.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\services\signUp\SignUpService.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\servlets\SignUpServlet.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\models\User.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\services\signIn\SignInService.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\listeners\CustomServletContextListener.java
+C:\Users\ilzira\IdeaProjects\semesterWork\src\main\java\ru\itis\repositories\CrudRepository.java
