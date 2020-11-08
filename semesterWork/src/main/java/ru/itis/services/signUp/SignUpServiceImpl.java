@@ -7,8 +7,8 @@ import ru.itis.models.User;
 import ru.itis.repositories.UsersRepository;
 
 public class SignUpServiceImpl implements SignUpService{
-    private UsersRepository usersRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public SignUpServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
@@ -16,7 +16,7 @@ public class SignUpServiceImpl implements SignUpService{
     }
 
     @Override
-    public void signUp(SignUpForm form) {
+    public boolean signUp(SignUpForm form) {
         User user = User.builder()
                 .firstName(form.getFirstName())
                 .lastName(form.getLastName())
@@ -24,5 +24,6 @@ public class SignUpServiceImpl implements SignUpService{
                 .hashPassword(passwordEncoder.encode(form.getPassword()))
                 .build();
          usersRepository.save(user);
+         return true;
     }
 }

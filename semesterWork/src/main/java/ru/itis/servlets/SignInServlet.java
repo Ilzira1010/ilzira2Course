@@ -14,6 +14,7 @@ import java.io.IOException;
 public class SignInServlet extends HttpServlet {
 
     private SignInService signInService;
+    private String error;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -22,7 +23,8 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/signIn.jsp").forward(req, resp);
+        req.setAttribute("error", error);
+        req.getRequestDispatcher("WEB-INF/jsp/signIn.jsp").forward(req, resp);
     }
 
     @Override
@@ -34,9 +36,10 @@ public class SignInServlet extends HttpServlet {
 
         if (signInService.signIn(form)) {
             HttpSession session = req.getSession();
-            session.setAttribute("auth", true);
+            session.setAttribute("authenticated", true);
             resp.sendRedirect("/");
         } else {
+            error = "Authorization error";
             resp.sendRedirect("/signIn");
         }
     }

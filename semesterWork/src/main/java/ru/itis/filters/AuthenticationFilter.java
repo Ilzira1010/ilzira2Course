@@ -1,6 +1,5 @@
 package ru.itis.filters;
 
-import ru.itis.dto.UserDto;
 import ru.itis.services.UsersService;
 
 import javax.servlet.*;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/*")
+@WebFilter({"/signIn", "/signUp", "/"})
 public class AuthenticationFilter implements Filter {
 
     private UsersService usersService;
@@ -41,10 +40,10 @@ public class AuthenticationFilter implements Filter {
         }
 
         // если авторизован и запрашивает не логин или если не авторизован и запрашивает логин
-        if (isAuthenticated && !isLoginPage || !isAuthenticated && isLoginPage || !isAuthenticated&&isSignUpPage) {
+        if (isAuthenticated && (!isLoginPage && !isSignUpPage) || !isAuthenticated && isLoginPage || !isAuthenticated && isSignUpPage) {
             // отдаем ему то, что он хочет
             filterChain.doFilter(request, response);
-        } else if (isAuthenticated && isLoginPage) {
+        } else if (isAuthenticated) {
             // пользователь аутенцифицирован и запрашивает страницу входа
             // - отдаем ему корень
             response.sendRedirect("/");
