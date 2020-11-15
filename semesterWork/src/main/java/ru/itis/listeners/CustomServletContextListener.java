@@ -1,25 +1,24 @@
 package ru.itis.listeners;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ru.itis.repositories.FilesRepository;
+import ru.itis.repositories.FilesRepositoryImpl;
 import ru.itis.repositories.UsersRepository;
-import ru.itis.repositories.UsersRepositoryImpl;
+import ru.itis.repositories.UsersRepositoryJdbcImpl;
+import ru.itis.services.files.FilesService;
+import ru.itis.services.files.FilesServiceImpl;
 import ru.itis.services.signIn.SignInService;
 import ru.itis.services.signIn.SignInServiceImpl;
 import ru.itis.services.signUp.SignUpService;
 import ru.itis.services.signUp.SignUpServiceImpl;
+import ru.itis.services.users.UsersService;
+import ru.itis.services.users.UsersServiceImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-/**
- * 23.10.2020
- * 4. Simple Web Application
- *
- * @author Sidikov Marsel (First Software Engineering Platform)
- * @version v1.0
- */
 @WebListener
 public class CustomServletContextListener implements ServletContextListener {
 
@@ -37,11 +36,16 @@ public class CustomServletContextListener implements ServletContextListener {
         dataSource.setPassword(DB_PASSWORD);
         dataSource.setUrl(DB_URL);
 
-        UsersRepository usersRepository = new UsersRepositoryImpl(dataSource);
+        UsersRepository usersRepository = new UsersRepositoryJdbcImpl(dataSource);
+        FilesRepository filesRepository = new FilesRepositoryImpl(dataSource);
         SignUpService signUpService = new SignUpServiceImpl(usersRepository);
         SignInService signInService = new SignInServiceImpl(usersRepository);
+        FilesService filesService = new FilesServiceImpl(filesRepository);
+        UsersService usersService = new UsersServiceImpl(usersRepository);
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("signInService", signInService);
+        servletContext.setAttribute("filesUploadService", filesService);
+        servletContext.setAttribute("usersService", usersService);
     }
 
     @Override

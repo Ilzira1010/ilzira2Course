@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public class SignInServiceImpl implements SignInService {
 
-    private UsersRepository usersRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UsersRepository usersRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public SignInServiceImpl(UsersRepository usersRepository){
         this.usersRepository = usersRepository;
@@ -22,8 +22,9 @@ public class SignInServiceImpl implements SignInService {
         Optional<User> user = usersRepository.findUserByEmail(form.getEmail());
 
         if(user.isPresent()){
-            if(passwordEncoder.matches(form.getPassword(), user.get().getHashPassword()))
-            return true;
+            if (passwordEncoder.matches(form.getPassword(), user.get().getHashPassword())) {
+                return true;
+            }
         }
         return false;
     }

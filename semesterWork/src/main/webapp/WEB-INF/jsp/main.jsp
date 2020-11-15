@@ -12,5 +12,7 @@
 </head>
 <body>
 <h1>Main</h1>
+<a href="/users">Users</a><br>
+<a href="/files">Upload File</a>
 </body>
 </html>

@@ -2,13 +2,12 @@ package ru.itis.models;
 
 import lombok.*;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@ToString
 public class User {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;

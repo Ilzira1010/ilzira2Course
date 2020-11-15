@@ -2,7 +2,6 @@ package ru.itis.servlets;
 
 import ru.itis.dto.SignInForm;
 import ru.itis.services.signIn.SignInService;
-import ru.itis.services.signUp.SignUpService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ public class SignInServlet extends HttpServlet {
     private String error;
 
     @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) {
         signInService = (SignInService) config.getServletContext().getAttribute("signInService");
     }
 
@@ -37,7 +36,7 @@ public class SignInServlet extends HttpServlet {
         if (signInService.signIn(form)) {
             HttpSession session = req.getSession();
             session.setAttribute("authenticated", true);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/main");
         } else {
             error = "Authorization error";
             resp.sendRedirect("/signIn");
