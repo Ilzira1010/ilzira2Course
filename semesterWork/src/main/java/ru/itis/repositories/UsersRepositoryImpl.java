@@ -5,14 +5,15 @@ import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.User;
 
 import javax.sql.DataSource;
+import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
-public class UsersRepositoryJdbcImpl implements UsersRepository {
+public class UsersRepositoryImpl implements UsersRepository {
 
     //language=SQL
-    private final static String SQL_INSERT = "insert into users(firstname, lastname, email, hash) " +
-            "values (?, ?, ?, ?)";
+    private final static String SQL_INSERT = "insert into users(nickname, email, hash) " +
+            "values (?, ?, ?)";
 
     //language=SQL
     private final static String SQL_SELECT_ALL = "select * from users";
@@ -21,21 +22,19 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UsersRepositoryJdbcImpl(DataSource dataSource) {
+    public UsersRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     private final RowMapper<User> usersRowMapper = (row, rowNumber) -> User.builder()
             .id(row.getLong("id"))
-            .firstName(row.getString("firstname"))
-            .lastName(row.getString("lastname"))
+            .nickname(row.getString("nickname"))
             .email(row.getString("email"))
             .hashPassword(row.getString("hash"))
             .build();
 
     public void save(User entity) {
-        jdbcTemplate.update(SQL_INSERT, entity.getFirstName(),
-                entity.getLastName(),
+        jdbcTemplate.update(SQL_INSERT, entity.getNickname(),
                 entity.getEmail(),
                 entity.getHashPassword());
     }

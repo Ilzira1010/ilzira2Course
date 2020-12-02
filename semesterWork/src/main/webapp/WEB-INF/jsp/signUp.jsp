@@ -36,12 +36,8 @@
                             %>
                             <form action="/signUp" autocomplete="off" method="post" id="form">
                                 <div class="form-group">
-                                    <span class="text-black-50">First name</span>
-                                    <input id="nickname-signup" type="text" class="form-control" name="firstname" required>
-                                </div>
-                                <div class="form-group">
-                                    <span class="text-black-50">Last name</span>
-                                    <input id="lastname-signup" type="text" class="form-control" name="lastname" required>
+                                    <span class="text-black-50">Nickname</span>
+                                    <input id="nickname-signup" type="text" class="form-control" name="nickname" required>
                                 </div>
                                 <div class="form-group">
                                     <span class="text-black-50">Email</span>
@@ -52,7 +48,6 @@
                                 <div class="form-group">
                                     <span class="text-black-50">Password</span>
                                     <input id="password-signup" type="password" class="form-control" name="password"
-                                    <%--pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}"--%>
                                            title="Password should consist of latin alphabet and must contains letter with capital case and at list one num"
                                            required>
                                 </div>

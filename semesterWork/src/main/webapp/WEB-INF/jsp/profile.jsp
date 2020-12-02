@@ -1,3 +1,12 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: User
+  Date: 01.12.2020
+  Time: 19:00
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<@base.mainMacro title="Profile" css=['main.css']>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -15,7 +24,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="<c:url value="/views/static/bootstrap.min.css"/>" rel="stylesheet" id="bootstrap-css">
-    <title>Profile</title>
+    <title>Main</title>
 </head>
 <body>
 <header>
@@ -41,31 +50,38 @@
     </nav>
 </header>
 <main>
+    <button class="btn btn-primary m-3" onclick="location.href='<c:url value="/create"/>'">Create Podcast</button>
+    <button class="btn btn-primary m-3" onclick="location.href='<c:url value="/quit"/>'">Sign Out</button>
     <div class="container">
-    <c:forEach items="${podcasts}" var="p">
-        <div class="card container m-3">
-            <div class="row">
-                <div class="col-lg-3 p-0">
-                    <img class="card-img-top img-fluid" src="<c:url value="/img?name=${p.getImg()}"/>" alt="Image of podcast">
-                </div>
-                <div class="col-lg-9">
-                    <div class="card-body">
-                        <h2 class="card-text podcast-title title">${p.getTitle()}</h2>
-                        <h3 class="card-text podcast-title category">Category: <span>${p.getCategory().getName()}</span></h3>
+        <h2 class="text-center">My Podcasts</h2>
+        <c:forEach items="${podcasts}" var="p">
+            <div class="card container m-3">
+                <div class="row">
+                    <div class="col-lg-3 p-0">
+                        <img class="card-img-top img-fluid" src="<c:url value="/img?name=${p.getImg()}"/>" alt="Image of podcast">
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">${p.getUser().getNickname()} / ${p.getCreated_at()}</p>
-                        <div class="container-audio">
-                            <audio controls preload="auto" id="audio">
-                                <source src="<c:url value="/track?name=${p.getTrack()}"/>" type="audio/ogg">
-                                Your browser dose not Support the audio Tag
-                            </audio>
+                    <div class="col-lg-9">
+                        <div class="card-body">
+                            <h2 class="card-text podcast-title title">${p.getTitle()}</h2>
+                            <h3 class="card-text podcast-title category">Category: <span>${p.getCategory().getName()}</span></h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">${p.getUser().getNickname()} / ${p.getCreated_at()}</p>
+                            <div class="container-audio">
+                                <audio controls preload="auto" id="audio">
+                                    <source src="<c:url value="/track?name=${p.getTrack()}"/>" type="audio/ogg">
+                                    Your browser dose not Support the audio Tag
+                                </audio>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </c:forEach>
+            <div class="button-container mb-2 w-50 ml-2">
+                <a class="btn btn-success mx-2 w-25" href='<c:url value="/edit?id=${p.getId()}"/>'>Edit</a>
+                <a class="btn btn-danger mx-2 w-25" href='<c:url value="/delete?id=${p.getId()}"/>'>Delete</a>
+            </div>
+        </c:forEach>
     </div>
 </main>
 <footer class="footer navbar-fixed-bottom font-small pt-4">
@@ -98,3 +114,5 @@
 <script src="<c:url value="/views/static/bootstrap.bundle.js"/>"></script>
 </body>
 </html>
+
+

@@ -10,12 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private String role;
-
-    public boolean isAdmin() {
-        return this.role.equals("ADMIN");
-    }
+    private long id;
+    private String email;
+    private String nickname;
 }

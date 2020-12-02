@@ -16,7 +16,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<UserDto> getUserByCookie(String value) {
+    public Optional<UserDto> getUserByEmail(String email) {
+        User user = usersRepository.findUserByEmail(email).orElse(null);
+        if (user != null) {
+            return Optional.ofNullable(UserDto.builder().id(user.getId()).email(user.getEmail()).nickname(user.getNickname()).build());
+        }
         return Optional.empty();
     }
 

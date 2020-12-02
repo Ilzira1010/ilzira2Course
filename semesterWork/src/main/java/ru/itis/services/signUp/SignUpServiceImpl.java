@@ -18,8 +18,7 @@ public class SignUpServiceImpl implements SignUpService{
     @Override
     public boolean signUp(SignUpForm form) {
         User user = User.builder()
-                .firstName(form.getFirstName())
-                .lastName(form.getLastName())
+                .nickname(form.getNickname())
                 .email(form.getEmail())
                 .hashPassword(passwordEncoder.encode(form.getPassword()))
                 .build();

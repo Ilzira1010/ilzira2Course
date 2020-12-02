@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: ilzira
-  Date: 08.11.2020
-  Time: 14:53
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -40,34 +33,24 @@
         </div>
     </nav>
 </header>
-<main>
-    <div class="container">
-    <c:forEach items="${podcasts}" var="p">
-        <div class="card container m-3">
-            <div class="row">
-                <div class="col-lg-3 p-0">
-                    <img class="card-img-top img-fluid" src="<c:url value="/img?name=${p.getImg()}"/>" alt="Image of podcast">
-                </div>
-                <div class="col-lg-9">
-                    <div class="card-body">
-                        <h2 class="card-text podcast-title title">${p.getTitle()}</h2>
-                        <h3 class="card-text podcast-title category">Category: <span>${p.getCategory().getName()}</span></h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">${p.getUser().getNickname()} / ${p.getCreated_at()}</p>
-                        <div class="container-audio">
-                            <audio controls preload="auto" id="audio">
-                                <source src="<c:url value="/track?name=${p.getTrack()}"/>" type="audio/ogg">
-                                Your browser dose not Support the audio Tag
-                            </audio>
-                        </div>
-                    </div>
-                </div>
+    <main>
+        <div class="container">
+            <form action="/search" method="get" id='search_form' class="form-inline my-2 w-100">
+                <input name="search" class="form-control mr-sm-2 ml-3 w-75" id='inputSearch' type="search" placeholder="Search"
+                       aria-label="Search">
+                <select class="form-control mx-3" name="category">
+                    <option value="0" selected>---</option>
+                    <c:forEach items="${categories}" var="c">
+                        <option value="${c.getId()}">${c.getName()}</option>
+                    </c:forEach>
+                </select>
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div id="results">
+
             </div>
         </div>
-    </c:forEach>
-    </div>
-</main>
+    </main>
 <footer class="footer navbar-fixed-bottom font-small pt-4">
     <hr>
     <div class="container">
@@ -96,5 +79,7 @@
 <script src="<c:url value="/views/static/fontawesome.js"/>"></script>
 <script src="<c:url value="/views/static/jquery-3.5.1.min.js"/>"></script>
 <script src="<c:url value="/views/static/bootstrap.bundle.js"/>"></script>
+<script src="<c:url value="/views/js/search.js"/>"></script>
 </body>
 </html>
+

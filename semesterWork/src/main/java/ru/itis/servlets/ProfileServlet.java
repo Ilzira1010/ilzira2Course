@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import ru.itis.dto.UserDto;
 import ru.itis.models.Podcast;
 import ru.itis.services.podcast.PodcastService;
 
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/profile")
+public class ProfileServlet extends HttpServlet {
 
     private PodcastService podcastService;
 
@@ -21,10 +22,17 @@ public class MainServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         podcastService = (PodcastService) config.getServletContext().getAttribute("podcastService");
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Podcast> podcasts = podcastService.getAll();
+        UserDto userDto = (UserDto) req.getSession().getAttribute("user");
+        List<Podcast> podcasts = podcastService.getUserPodcasts(userDto);
         req.setAttribute("podcasts", podcasts);
-        req.getRequestDispatcher("/WEB-INF/jsp/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/profile.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }

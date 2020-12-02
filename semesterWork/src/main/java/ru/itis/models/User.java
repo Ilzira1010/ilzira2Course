@@ -8,8 +8,7 @@ import lombok.*;
 @Builder
 public class User {
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String nickname;
     private String email;
     private String hashPassword;
 }

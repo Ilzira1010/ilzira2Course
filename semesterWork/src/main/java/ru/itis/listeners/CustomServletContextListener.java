@@ -1,12 +1,11 @@
 package ru.itis.listeners;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.itis.repositories.FilesRepository;
-import ru.itis.repositories.FilesRepositoryImpl;
-import ru.itis.repositories.UsersRepository;
-import ru.itis.repositories.UsersRepositoryJdbcImpl;
-import ru.itis.services.files.FilesService;
-import ru.itis.services.files.FilesServiceImpl;
+import ru.itis.repositories.*;
+import ru.itis.services.category.CategoryService;
+import ru.itis.services.category.CategoryServiceImpl;
+import ru.itis.services.podcast.PodcastService;
+import ru.itis.services.podcast.PodcastServiceImpl;
 import ru.itis.services.signIn.SignInService;
 import ru.itis.services.signIn.SignInServiceImpl;
 import ru.itis.services.signUp.SignUpService;
@@ -36,16 +35,19 @@ public class CustomServletContextListener implements ServletContextListener {
         dataSource.setPassword(DB_PASSWORD);
         dataSource.setUrl(DB_URL);
 
-        UsersRepository usersRepository = new UsersRepositoryJdbcImpl(dataSource);
-        FilesRepository filesRepository = new FilesRepositoryImpl(dataSource);
+        UsersRepository usersRepository = new UsersRepositoryImpl(dataSource);
+        PodcastRepository podcastRepository = new PodcastRepositoryImpl(dataSource);
+        CategoryRepository categoryRepository = new CategoryRepositoryImpl(dataSource);
         SignUpService signUpService = new SignUpServiceImpl(usersRepository);
         SignInService signInService = new SignInServiceImpl(usersRepository);
-        FilesService filesService = new FilesServiceImpl(filesRepository);
         UsersService usersService = new UsersServiceImpl(usersRepository);
+        PodcastService podcastService = new PodcastServiceImpl(podcastRepository);
+        CategoryService categoryService = new CategoryServiceImpl(categoryRepository);
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("signInService", signInService);
-        servletContext.setAttribute("filesUploadService", filesService);
         servletContext.setAttribute("usersService", usersService);
+        servletContext.setAttribute("podcastService", podcastService);
+        servletContext.setAttribute("categoryService", categoryService);
     }
 
     @Override
