@@ -73,7 +73,7 @@
         </ul>
     </div>
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a>Elzira Akhmatdinov</a>
+        <a>Ilzira Akhmetdinova</a>
     </div>
 </footer>
 <script src="<c:url value="/views/static/fontawesome.js"/>"></script>
