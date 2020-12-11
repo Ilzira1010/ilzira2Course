@@ -12,8 +12,9 @@ import java.io.IOException;
 public class QuitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().setAttribute("authenticated", false);
         req.getSession().setAttribute("user", null);
-        resp.sendRedirect("/signIn");
+        resp.sendRedirect("/main");
     }
 
     @Override
