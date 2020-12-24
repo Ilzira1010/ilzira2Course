@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.controller.LobbyController">
+   <children>
+      <ProgressIndicator fx:id="pb" layoutX="76.0" layoutY="104.0" prefHeight="118.0" prefWidth="105.0" progress="0.0" />
+      <Label layoutX="18.0" layoutY="247.0" text="Ожидание второго игрока">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
